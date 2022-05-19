@@ -1,20 +1,20 @@
-/* https://leetcode.cn/problems/kth-smallest-number-in-multiplication-table/ */
 public class s14 {
     public int findKthNumber(int m, int n, int k) {
-        int left = 1, right = m * n;
-        while (left < right) {
-            int x = left + (right - left) / 2;
-            int count = x / n * n;
-            for (int i = x / n + 1; i <= m; ++i) {
-                count += x / i;
-            }
-            if (count >= k) {
-                right = x;
-            } else {
-                left = x + 1;
+        if (m > n) {
+            int tmp = m;
+            m = n;
+            n = tmp;
+        }
+        int cnt = 0;
+        for (int i = 1; i <= m; i++) {
+            for (int j = i; j <= n; j++) {
+                int num = i * j;
+                cnt += (j > i && j <= m) ? 2 : 1;
+                System.out.println("num is " + num + " cnt add " + ((j > i && j <= m) ? 2 : 1));
+                if (cnt >= k) return num;
             }
         }
-        return left;
+
+        return -1;
     }
 }
-
