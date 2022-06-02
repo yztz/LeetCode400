@@ -1,27 +1,26 @@
 import java.util.Arrays;
-/* https://leetcode.cn/problems/matchsticks-to-square/submissions/ */
-class Solution {
+import java.util.Objects;
+import java.util.PriorityQueue;
+
+public class s28 {
     public boolean makesquare(int[] matchsticks) {
-        int totalLen = Arrays.stream(matchsticks).sum();
-        if (totalLen % 4 != 0) {
-            return false;
+        int n = matchsticks.length;
+        if(n < 4) return false;
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        for (int matchstick : matchsticks) {
+            queue.add(matchstick);
         }
-        int len = totalLen / 4, n = matchsticks.length;
-        int[] dp = new int[1 << n];
-        Arrays.fill(dp, -1);
-        dp[0] = 0;
-        for (int s = 1; s < (1 << n); s++) {
-            for (int k = 0; k < n; k++) {
-                if ((s & (1 << k)) == 0) {
-                    continue;
-                }
-                int s1 = s & ~(1 << k);
-                if (dp[s1] >= 0 && dp[s1] + matchsticks[k] <= len) {
-                    dp[s] = (dp[s1] + matchsticks[k]) % len;
-                    break;
-                }
-            }
+        while (queue.size() > 4) {
+            int a = queue.poll();
+            int b = queue.poll();
+            queue.offer(a + b);
         }
-        return dp[(1 << n) - 1] == 0;
+        Integer[] array = new Integer[4];
+        queue.toArray(array);
+        for (int i = 1; i < 4; i++) {
+            if (!Objects.equals(array[i], array[i - 1]))
+                return false;
+        }
+        return true;
     }
 }
