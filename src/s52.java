@@ -1,3 +1,4 @@
+/* https://leetcode.cn/problems/JEj789/ */
 public class s52 {
     public int minCost(int[][] costs) {
         int n = costs.length;
