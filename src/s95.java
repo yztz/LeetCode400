@@ -1,4 +1,4 @@
-/* https://leetcode.cn/problems/swap-adjacent-in-lr-string/ */\
+/* https://leetcode.cn/problems/swap-adjacent-in-lr-string/ */
 import javafx.util.Pair;
 
 import java.util.ArrayDeque;
