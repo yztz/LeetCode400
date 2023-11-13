@@ -1,3 +1,5 @@
+import utils.TreeNode;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -45,9 +47,4 @@ public class s7 {
     }
 }
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int x) { val = x; }
-}
+
