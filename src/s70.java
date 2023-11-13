@@ -1,3 +1,5 @@
+import utils.TreeNode;
+
 /* https://leetcode.cn/problems/maximum-binary-tree-ii/ */
 public class s70 {
     public TreeNode insertIntoMaxTree(TreeNode root, int val) {
