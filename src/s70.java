@@ -1,22 +1,14 @@
-import utils.TreeNode;
-
-/* https://leetcode.cn/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/description/ */
+/* https://leetcode.cn/problems/maximum-binary-tree-ii/ */
 public class s70 {
-    TreeNode ans;
-    private boolean dfs(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null) return false;
-
-        boolean c = root.val == p.val || root.val == q.val;
-        boolean l = dfs(root.left, p, q);
-        boolean r = dfs(root.right, p, q);
-
-        if ((l && r || l && c || r && c) && ans == null) ans = root;
-
-        return l || r || c;
-    }
-
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        dfs(root, p, q);
-        return ans;
+    public TreeNode insertIntoMaxTree(TreeNode root, int val) {
+        if(root == null) return new TreeNode(val);
+        if(root.val <= val) {
+            TreeNode ans = new TreeNode(val);
+            ans.left = root;
+            return ans;
+        } else {
+            root.right = insertIntoMaxTree(root.right, val);
+            return root;
+        }
     }
 }
